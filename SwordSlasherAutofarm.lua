@@ -5,12 +5,18 @@ local Players = game:GetService("Players")
                 local LocalPlayer = Players.LocalPlayer
                 local OriginalGravity = Workspace.Gravity
 
+                local animator = LocalPlayer.Humanoid:WaitForChild("Animator")
+                local hitAnimation = Instance.new("Animation")
+                hitAnimation.Animationid = "rbxassetid://12298518568"
+                local Animation = animator:LoadAnimation(hitAnimation)
+
                 local mobsFolder = Workspace.Mobs
 
                 getgenv().attackToggle = not getgenv().attackToggle
 
                 function attack()
                     ReplicatedStorage.EventStorage.Attack:InvokeServer()
+                    Animation:Play()
                 end
 
                 function isAlive(instance)
